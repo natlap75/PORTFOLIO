@@ -1,0 +1,5 @@
+python3 -m venv tetris_tk
+source tetris_tk/bin/activate
+pip3 install tk
+pip3 install pygame
+

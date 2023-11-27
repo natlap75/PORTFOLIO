@@ -1,0 +1,36 @@
+<GridGame>:
+
+<TetrisGame>:
+    FloatLayout:
+        id: game_layout
+        size: self.parent.width, self.parent.height
+        canvas:
+            Rectangle:
+                source: 'ice.png'
+                size: self.size
+
+            Rectangle:
+                source: 'tree.png'
+                pos: 20, 20
+                size: self.width/20*12, self.height-40
+
+    FloatLayout:
+        id: game_layout_box
+        size: self.parent.width, self.parent.height
+        canvas:
+            Color:
+                rgb: 0,0,1,1
+            Rectangle:
+                pos: 20, 20
+                size: self.width/20*12, self.height-40
+
+
+    Label:
+        font_size: 100
+        #font_name: 'Raleway-Black.ttf'
+        center_x: root.width / 20*16
+        color: [1,0,0,0.75]
+        top: root.top -20
+        text: 'TETRIS'
+
+    GridGame:
