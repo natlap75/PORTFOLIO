@@ -1,0 +1,208 @@
+ScreenManager:
+    EventScreen:
+        name: "Events"
+    FinalScreen:
+        name: "Final"
+
+ 
+<Image>:
+    source: 'logo.jpeg'
+    size_hint: 1, .15     
+    pos_hint: {"x":0, "y":.85}
+    canvas.before:
+        Color:
+            rgba: (255/255, 193/255, 193/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<Label>:
+    color: (112/255, 70/255, 53/255, 1)
+    background_color: (.0,.9,.1, 1)
+    size_hint: 1, .3
+    font_name: 'Raleway-Black.ttf'    
+    font_size:self.width/25
+    text_size: self.width, None         # wrap long text to next line / NL
+    halign: "center"
+    canvas.before:
+        Color:
+            rgba: (255/255, 193/255, 193/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<Button>:
+    size_hint: 1, .15
+    background_normal: ""
+    background_color: (255/255, 193/255, 193/255, 1)
+    font_name: 'Raleway-Black.ttf'
+    font_size:self.width/15
+    background_disabled_normal: ''
+    disabled_color: .5, .5, .5, .5
+    bold: True
+    disabled: False
+    canvas:
+        Color:
+            rgba: .3, .6, 1, .1
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [20]
+        Line:
+            width: 2
+            rectangle: self.x, self.y, self.width, self.height
+
+<EventScreen>:
+    label1:l1
+    tbutton1:tb1
+    tbutton2:tb2
+    tbutton3:tb3
+    tbutton4:tb4
+    nextbutton: next
+
+    GridLayout:
+        cols: 1
+        rows: 7
+
+        Image:
+            id: i1    
+            
+        Label:
+            id: l1
+            text: "NOTE: Any personal data will not be stored\n\nPlease, choose the subject from below"
+
+        ToggleButton:
+            id: tb1
+            text: "Food and drink"
+            group: "Answer"
+            color: 205/255,55/255,0/255,.8
+            disabled: False
+            on_press: root.check_button(1)
+
+        ToggleButton:
+            id: tb2
+            text: "General"
+            group: "Answer"
+            color: 138/255,43/255,226/255,1
+            disabled: False
+            on_press: root.check_button(2)    
+
+        ToggleButton:
+            id: tb3
+            text: "Nature"
+            group: "Answer"
+            color: 84/255,139/255,84/255,1
+            disabled: False
+            on_press: root.check_button(3) 
+
+        ToggleButton:
+            id: tb4
+            text: "Health"
+            group: "Answer"
+            color: 238/255,118/255,33/255
+            disabled: False
+            on_press: root.check_button(4) 
+
+        GridLayout:
+            cols: 2
+            rows: 1
+            size_hint: 1, 0.1
+
+            Button:
+                text: "CLOSE"
+                size_hint: .5, 0.1
+                background_normal: ""
+                background_color: ( 50/255, 50/255, 50/255, 0.3)
+                on_press: app.root.current = "Final"
+                canvas.before:
+                    Color:
+                        rgba: (.6, .6, .6, 1) if self.state == "normal" else (0, 1, 1, 0.4)
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [20]
+                    Line:
+                        width: 2
+                        rectangle: self.x, self.y, self.width, self.height
+
+            Button:
+                id: next
+                text: "NEXT"
+                size_hint: .5, 0.1
+                background_normal: ""
+                background_color: (100/255, 255/255, 100/255, 0.8)
+                disabled: True
+                disabled_color: .5, .5, .5, .5
+                on_press: root. values()                    
+                canvas.before:
+                    Color:
+                        rgba: (.6, .6, .6, 1) if self.state == "normal" else (0, 1, 1, 0.4)
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [20]
+                    Line:
+                        width: 2
+                        rectangle: self.x, self.y, self.width, self.height
+
+
+<FinalScreen@GridLayout>:
+    
+    GridLayout:
+        cols: 1
+        rows: 4
+
+        Image:
+            id: i1
+
+        Label:
+            text: " Thank you for playing! "
+            color: (112/255, 70/255, 53/255, 1)
+            font_size:self.width/15
+            text_size: self.width, None
+
+        Image:
+            source: 'cat.jpg'
+            size: self.size 
+
+        GridLayout:
+            cols: 2
+            rows: 1
+            size_hint: 1, 0.1
+
+            Button:
+                text: "EXIT"        # Exit choice button with app closing added / NL
+                size_hint: .5, 0.1
+                background_normal: ""
+                background_color: ( 50/255, 50/255, 50/255, 0.3)
+                on_press: exit()
+                canvas.before:
+                    Color:
+                        rgba: (.6, .6, .6, 1) if self.state == "normal" else (0, 1, 1, 0.4)
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [20]
+                    Line:
+                        width: 2
+                        rectangle: self.x, self.y, self.width, self.height
+
+            Button:
+                id: next
+                text: "PLAY AGAIN"
+                size_hint: .5, 0.1
+                background_normal: ""
+                background_color: (100/255, 255/255, 100/255, 0.8)
+                on_press: 
+                    app.root.current = "Events"
+                    app.event_page.play_again()
+                canvas.before:
+                    Color:
+                        rgba: (.6, .6, .6, 1) if self.state == "normal" else (0, 1, 1, 0.4)
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [20]
+                    Line:
+                        width: 2
+                        rectangle: self.x, self.y, self.width, self.height
