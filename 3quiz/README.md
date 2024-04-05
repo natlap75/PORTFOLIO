@@ -1,3 +1,2 @@
 # 3quiz
-21082023 - first version is replaced by latest one
-(First version to be replaced by latest)
+The collaborative programming project created for educational purposes, developed in partnership with SHolmix.
